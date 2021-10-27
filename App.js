@@ -6,8 +6,8 @@ export default function App(){
 
     useEffect(()=>{
         shop.getProducts((product)=>console.log(product))
-        
-    },1000)
+
+    })
 
 
     return(
