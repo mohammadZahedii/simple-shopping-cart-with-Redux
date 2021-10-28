@@ -1,11 +1,15 @@
-import React,{useEffect} from 'react'
+import React,{useEffect, useState} from 'react'
 import shop from './api/shop'
-
+import ProductList from './components/ProductList'
 
 export default function App(){
-
+ 
+    const [products,setproducts]=useState()
     useEffect(()=>{
-        shop.getProducts((product)=>console.log(product))
+        shop.getProducts((product)=>{
+            setproducts(product)
+        
+        },[])
 
     })
 
@@ -15,6 +19,7 @@ export default function App(){
 
             <h2>Shopping Cart Example</h2>
             <hr/>
+            <ProductList products={products}/>
 
         </div>
         
