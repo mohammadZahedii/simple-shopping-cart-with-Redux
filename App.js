@@ -1,14 +1,17 @@
 import React,{useEffect, useState} from 'react'
 import shop from './api/shop'
 import ProductList from './components/ProductList'
+import { connect } from 'react-redux'
+import {recieveProducts} from './actions'
 
-export default function App(){
- 
-    const [products,setproducts]=useState()
+
+function App(props){
+    console.log(props)
+    const {dispatchProducts}=props
+
     useEffect(()=>{
-        shop.getProducts((product)=>{
-            setproducts(product)
-        
+        shop.getProducts((products)=>{
+            dispatchProducts(products)
         },[])
 
     })
@@ -19,9 +22,19 @@ export default function App(){
 
             <h2>Shopping Cart Example</h2>
             <hr/>
-            <ProductList products={products}/>
+            <ProductList/>
 
         </div>
         
     )
 }
+
+
+
+const mapDispatchToProps=(dispatch)=>{
+
+    return{
+        dispatchProducts:products=>dispatch(recieveProducts(products))
+    }
+}
+export default connect(null,mapDispatchToProps)(App);
