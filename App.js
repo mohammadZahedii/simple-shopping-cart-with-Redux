@@ -3,7 +3,7 @@ import shop from './api/shop'
 import ProductList from './components/ProductList'
 import { connect } from 'react-redux'
 import {recieveProducts} from './actions'
-
+import Cart from './components/Cart'
 
 function App(props){
     console.log(props)
@@ -23,6 +23,8 @@ function App(props){
             <h2>Shopping Cart Example</h2>
             <hr/>
             <ProductList/>
+            <hr/>
+            <Cart/>
 
         </div>
         
