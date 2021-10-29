@@ -2,10 +2,10 @@
 import React from 'react'
 
 export default function Product(props){
-    const{title,inventory,price}=props
+    const{title,quantity,price,...other}=props
     return(
-        <div>
-            {title} - ${price} * {inventory}
+        <div {...other}>
+            {title} - ${price} * {quantity}
         </div>
 
     )

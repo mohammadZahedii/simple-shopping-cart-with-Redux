@@ -7,7 +7,7 @@ export default function ProductItem(props){
     const {product,addToCart}=props
     return(
         <div style={{marginBottom:'20px'}}>
-            <Product {...product}/>
+            <Product {...product} quantity={product.inventory}/>
             <button disabled={product.inventory > 0 ? '':'disabled'} onClick={addToCart}> 
                 {product.inventory > 0 ? 'Add to cart':'Sold Out'}
             </button>
