@@ -15,3 +15,10 @@ export const addToCart = productId =>{
         productId
     }
 }
+
+
+export const checkout =()=>{
+    return{
+        type:types.ADD_CHECKOUT
+    }
+}

@@ -1,11 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Product from './Product'
+import { checkout } from '../actions'
+
 
 function Cart(props){
 
 
-const {products,total}=props
+const {products,total,dispatchCheckout}=props
 console.log(products)
 
 const hasProducts =products.length > 0
@@ -23,6 +25,7 @@ const nodes = hasProducts ?(
             <p>Total: ${total}</p>
             <button
                 disabled={hasProducts?'':'disabled'}
+                onClick={dispatchCheckout}
             >Checkout</button>
         </div>
     )
@@ -53,4 +56,10 @@ const mapStateToProps=state=>{
 
 }
 
-export default connect(mapStateToProps)(Cart)
+
+const mapDispatchToProps=dispatch=>{
+    return{
+        dispatchCheckout:()=>dispatch(checkout())
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Cart)

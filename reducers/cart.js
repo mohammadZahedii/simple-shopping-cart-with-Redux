@@ -1,4 +1,4 @@
-import { ADD_TO_CART } from "../constant/actionsTypes";
+import { ADD_CHECKOUT, ADD_TO_CART } from "../constant/actionsTypes";
 
 const initialState={
     addedIds:[],
@@ -28,7 +28,8 @@ export default function cart(state=initialState,action){
                 addedIds:addedIds(state.addedIds,action),
                 quantityById:quantityById(state.quantityById,action)
             }
-    
+        case ADD_CHECKOUT:
+            return initialState
         default:
             return state
     }
