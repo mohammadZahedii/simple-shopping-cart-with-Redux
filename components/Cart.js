@@ -5,7 +5,7 @@ import Product from './Product'
 function Cart(props){
 
 
-const {products}=props
+const {products,total}=props
 console.log(products)
 
 const hasProducts =products.length > 0
@@ -20,7 +20,7 @@ const nodes = hasProducts ?(
         <div>
             <h3>Your Cart</h3>
             <div>{nodes}</div>
-            {/* <p>Total: ${total}</p> */}
+            <p>Total: ${total}</p>
             <button
                 disabled={hasProducts?'':'disabled'}
             >Checkout</button>
@@ -39,10 +39,16 @@ const getCartProducts =(state)=>{
 }
 
 
+const getTotal=(state)=>{
+    return state.cart.addedIds.reduce((total,id)=>total + state.products[id-1].price * (state.cart.quantityById[id] || 0),0).toFixed(2)
+}
+
+
 const mapStateToProps=state=>{
 
     return{
-        products:getCartProducts(state)
+        products:getCartProducts(state),
+        total:getTotal(state)
     }
 
 }
