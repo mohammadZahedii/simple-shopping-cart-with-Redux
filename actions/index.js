@@ -7,3 +7,11 @@ export const recieveProducts=(products)=>{
         products
     }
 }
+
+
+export const addToCart = productId =>{
+    return{
+        type:types.ADD_TO_CART,
+        productId
+    }
+}

@@ -1,19 +1,20 @@
 import React from 'react'
 import ProductItem from './ProductItem'
 import { connect } from 'react-redux'
+import { addToCart } from '../actions'
 //import { products } from '../reducers/products'
 
 function ProductList(props){
+    const {products,addToCart}=props
+     console.log(products)
 console.log(props)
-    const {products}=props
-    // console.log(products)
 
     return(
         <div>
             <h3>Products</h3>
             {products.map(product=>{
                 return(
-                    <ProductItem key={product.id} product={product}/>
+                    <ProductItem key={product.id} product={product} addToCart={()=>addToCart(product.id)}/>
                 )
             })}
        
@@ -30,8 +31,14 @@ const getProducts=products=>{
 
 const mapStateToProps=state=>{
     return {
-        products:getProducts(state.products)
+        products:state.products
     }
 }
 
-export default connect(mapStateToProps)(ProductList)
+
+const mapDispatchToProps=dispatch=>{
+    return {
+        addToCart: productId=>dispatch(addToCart(productId))
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(ProductList)
